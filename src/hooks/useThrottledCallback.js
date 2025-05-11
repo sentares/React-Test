@@ -1,0 +1,21 @@
+import { useCallback, useRef } from 'react'
+
+export function useThrottledCallback(callback, delay = 400) {
+	const lastCall = useRef(Date.now())
+
+	return useCallback(() => {
+		if (Date.now() >= lastCall.current + delay) {
+			lastCall.current = Date.now()
+			callback()
+		} else {
+			const timerId = setTimeout(() => {
+				lastCall.current = Date.now()
+				callback()
+			}, delay)
+
+			return () => {
+				clearTimeout(timerId)
+			}
+		}
+	}, [callback, delay])
+}

@@ -1,7 +1,12 @@
 import './App.css'
+import { Task4 } from './tasks/task-4'
 
 function App() {
-	return <></>
+	return (
+		<>
+			<Task4 />
+		</>
+	)
 }
 
 export default App
