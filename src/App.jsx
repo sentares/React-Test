@@ -1,5 +1,5 @@
 import './App.css'
-import { Task4 } from './tasks/task-4'
+import { Task4 } from './tasks/task4'
 
 function App() {
 	return (
