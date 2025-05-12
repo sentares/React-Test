@@ -17,10 +17,12 @@ export function useThrottledCallback(callback, delay = 400) {
 			lastCall.current = Date.now()
 			callback()
 		} else {
+			const remaining = delay - (Date.now() - lastCall.current)
+
 			const timerId = setTimeout(() => {
 				lastCall.current = Date.now()
 				callback()
-			}, delay)
+			}, remaining)
 
 			return () => {
 				clearTimeout(timerId)
