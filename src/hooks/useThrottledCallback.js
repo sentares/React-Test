@@ -10,7 +10,7 @@ export function useThrottledCallback(callback, delay = 400) {
 				clearTimeout(timeoutId.current)
 			}
 		}
-	})
+	}, [])
 
 	return useCallback(() => {
 		if (Date.now() >= lastCall.current + delay) {
