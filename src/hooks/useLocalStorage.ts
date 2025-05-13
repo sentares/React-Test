@@ -12,15 +12,9 @@ type UseLocalStorageReturn = [
 ]
 
 export function useLocalStorage(key: string): UseLocalStorageReturn {
-	const getItem = () => {
-		try {
-			return localStorage.getItem(key)
-		} catch {
-			return null
-		}
-	}
-
-	const [value, setValue] = useState<LocalStorageReturnValue>(getItem)
+	const [value, setValue] = useState<LocalStorageReturnValue>(() =>
+		localStorage.getItem(key)
+	)
 
 	const setItem = useCallback(
 		(newValue: LocalStorageSetValue) => {
